@@ -3,7 +3,7 @@ Nemunaire Gentoo Overlay
 
 This overlay includes ebuilds for the following packages:
 
-* FIXME
+* `net-im/netsoul-purple`: Netsoul plugin for libpurple (https://github.com/sekh/netsoul-purple)
 
 Usage with Layman
 -----------------
