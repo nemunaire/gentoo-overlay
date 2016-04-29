@@ -23,6 +23,7 @@ RDEPEND="
 	caps? ( >=sys-libs/libcap-ng-0.6.4 )
 	dnstap? ( dev-libs/fstrm dev-libs/protobuf-c )
 	idn? ( net-dns/libidn )
+	dev-libs/libedit
 	systemd? ( sys-apps/systemd )
 "
 
