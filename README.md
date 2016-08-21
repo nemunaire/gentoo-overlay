@@ -8,9 +8,10 @@ This overlay includes ebuilds for the following packages:
 Usage with Layman
 -----------------
 
+You can add this overlay using layman:
+
 ```
-$ wget "https://raw.githubusercontent.com/nemunaire/gentoo-overlay/master/overlays.xml" -O /etc/layman/overlays/nemunaire.xml
-$ layman -f -a odroidc1
+$ layman -f -a nemunaire -o https://raw.githubusercontent.com/nemunaire/gentoo-overlay/master/overlays.xml
 ```
 
 Usage with Portage
