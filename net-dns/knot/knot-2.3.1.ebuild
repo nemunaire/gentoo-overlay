@@ -16,7 +16,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug dnstap doc caps +fastparser idn systemd"
 
 RDEPEND="
-	>=net-libs/gnutls-3.0
+	>=net-libs/gnutls-3.3
 	>=dev-libs/jansson-2.3
 	>=dev-db/lmdb-0.9.15
 	>=dev-libs/userspace-rcu-0.5.4
@@ -39,7 +39,6 @@ S="${WORKDIR}/${P/_/-}"
 
 src_prepare() {
 	epatch "${FILESDIR}/2.0.2-dont-create-extra-directories.patch"
-	epatch "${FILESDIR}/2.3.0-added-conversion-to-wire-format-when-writing-FNV64-hash-values.patch"
 	eapply_user
 }
 
