@@ -7,6 +7,7 @@ PYTHON_COMPAT=(python{2_7,3_4,3_5})
 
 if [[ ${PV} == 9999* ]]; then
 	EGIT_REPO_URI="https://github.com/kuba/simp_le.git"
+	EGIT_BRANCH="acme-0.8"
 	inherit git-r3
 	KEYWORDS=""
 else
