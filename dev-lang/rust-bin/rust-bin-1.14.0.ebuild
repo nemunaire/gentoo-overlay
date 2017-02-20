@@ -11,7 +11,10 @@ MY_P="rust-${PV}"
 DESCRIPTION="Systems programming language from Mozilla"
 HOMEPAGE="http://www.rust-lang.org/"
 SRC_URI="amd64? ( http://static.rust-lang.org/dist/${MY_P}-x86_64-unknown-linux-gnu.tar.gz )
-	arm? ( http://static.rust-lang.org/dist/${MY_P}-armv7-unknown-linux-gnueabihf.tar.gz )
+	arm? (
+		!neon? ( http://static.rust-lang.org/dist/${MY_P}-arm-unknown-linux-gnueabihf.tar.gz )
+		neon? ( http://static.rust-lang.org/dist/${MY_P}-armv7-unknown-linux-gnueabihf.tar.gz )
+	)
 	mips? ( http://static.rust-lang.org/dist/${MY_P}-mips-unknown-linux-gnu.tar.gz )
 	ppc64? ( http://static.rust-lang.org/dist/${MY_P}-powerpc64-unknown-linux-gnu.tar.gz )
 	x86? ( http://static.rust-lang.org/dist/${MY_P}-i686-unknown-linux-gnu.tar.gz )"
@@ -19,7 +22,7 @@ SRC_URI="amd64? ( http://static.rust-lang.org/dist/${MY_P}-x86_64-unknown-linux-
 LICENSE="|| ( MIT Apache-2.0 ) BSD-1 BSD-2 BSD-4 UoI-NCSA"
 SLOT="stable"
 KEYWORDS="~amd64 ~arm ~x86"
-IUSE="doc"
+IUSE="doc neon"
 
 DEPEND=">=app-eselect/eselect-rust-0.3_pre20150425
 	!dev-lang/rust:0
@@ -38,7 +41,10 @@ src_unpack() {
 
 	local postfix
 	use amd64 && postfix=x86_64-unknown-linux-gnu
-	use arm && postfix=armv7-unknown-linux-gnueabihf
+	use arm && {
+		! use neon && usepostfix=arm-unknown-linux-gnueabihf
+		use neon && usepostfix=armv7-unknown-linux-gnueabihf
+	}
 	use mips && postfix=mips-unknown-linux-gnu
 	use ppc64 && postfix=powerpc64-unknown-linux-gnu
 	use x86 && postfix=i686-unknown-linux-gnu
