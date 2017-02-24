@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+# $Id: b06288a256bfb0611b74c7f613162bae55133180 $
 
 EAPI=5
 PYTHON_COMPAT=( python2_7 )
@@ -24,7 +24,7 @@ REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 # is fixed.
 
 CDEPEND=">=dev-libs/expat-2.1.0-r3[${MULTILIB_USEDEP}]
-	>=dev-libs/libevent-2.0.21[${MULTILIB_USEDEP}]
+	>=dev-libs/libevent-2.0.21:0=[${MULTILIB_USEDEP}]
 	libressl? ( >=dev-libs/libressl-2.2.4:0[${MULTILIB_USEDEP}] )
 	!libressl? ( >=dev-libs/openssl-1.0.1h-r2:0[${MULTILIB_USEDEP}] )
 	dnstap? (
