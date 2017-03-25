@@ -7,7 +7,7 @@ EAPI=6
 PYTHON_COMPAT=( python3_{3,4,5} )
 
 if [[ ${PV} == *9999 ]] ; then
-	EGIT_REPO_URI="https://github.com/stump/check_sshfp.git"
+	EGIT_REPO_URI="git://github.com/stump/check_sshfp.git"
 	inherit git-r3
 	SRC_URI=""
 	KEYWORDS=""
