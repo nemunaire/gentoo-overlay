@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: b06288a256bfb0611b74c7f613162bae55133180 $
 
 EAPI=5
 PYTHON_COMPAT=( python2_7 )
@@ -15,7 +14,7 @@ SRC_URI="http://unbound.net/downloads/${MY_P}.tar.gz"
 LICENSE="BSD GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~hppa ~mips ~ppc ~ppc64 ~x86"
-IUSE="debug dnstap +ecdsa gost libressl python selinux static-libs test threads"
+IUSE="debug dnscrypt dnstap +ecdsa gost libressl python selinux +sha1 static-libs test threads"
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 # Note: expat is needed by executable only but the Makefile is custom
@@ -27,6 +26,9 @@ CDEPEND=">=dev-libs/expat-2.1.0-r3[${MULTILIB_USEDEP}]
 	>=dev-libs/libevent-2.0.21:0=[${MULTILIB_USEDEP}]
 	libressl? ( >=dev-libs/libressl-2.2.4:0[${MULTILIB_USEDEP}] )
 	!libressl? ( >=dev-libs/openssl-1.0.1h-r2:0[${MULTILIB_USEDEP}] )
+	dnscrypt? (
+		dev-libs/libsodium
+	)
 	dnstap? (
 		dev-libs/fstrm[${MULTILIB_USEDEP}]
 		>=dev-libs/protobuf-c-1.0.2-r1[${MULTILIB_USEDEP}]
@@ -80,8 +82,10 @@ multilib_src_configure() {
 	econf \
 		$(use_enable debug) \
 		$(use_enable gost) \
+		$(use_enable dnscrypt) \
 		$(use_enable dnstap) \
 		$(use_enable ecdsa) \
+		$(use_enable sha1) \
 		$(use_enable static-libs static) \
 		$(multilib_native_use_with python pythonmodule) \
 		$(multilib_native_use_with python pyunbound) \
