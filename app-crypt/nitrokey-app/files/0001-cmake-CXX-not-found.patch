@@ -1,0 +1,11 @@
+--- a/libnitrokey/CMakeLists.txt	2017-08-06 01:35:11.382608018 +0200
++++ b/libnitrokey/CMakeLists.txt	2017-08-06 01:35:17.789623109 +0200
+@@ -3,8 +3,6 @@
+     OPTION(USE_CLANG "Use CLang" FALSE)
+     IF(USE_CLANG)
+         set(CMAKE_CXX_COMPILER "/usr/bin/clang++" CACHE string "clang++ compiler" FORCE)
+-    ELSE()
+-        set(CMAKE_CXX_COMPILER)
+     ENDIF()
+     OPTION(ADD_ASAN "Use ASAN to show memory issues" FALSE)
+     OPTION(ADD_TSAN "Use TSAN to show thread issues" FALSE)
