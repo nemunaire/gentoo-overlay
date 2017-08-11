@@ -7,27 +7,27 @@ if [[ ${PV} == 9999* ]]; then
 	EGIT_REPO_URI="https://github.com/raoulh/moolticute.git"
 	inherit git-r3
 	KEYWORDS=""
-	S=${WORKDIR}/${P}
 else
-	SRC_URI="https://github.com/raoulh/moolticute/archive/v${PV}-beta.tar.gz -> moolticute-${PV}.tar.gz"
+	MY_PV="${PV}-beta"
+	SRC_URI="https://github.com/raoulh/moolticute/archive/v${MY_PV}.tar.gz -> moolticute-${PV}.tar.gz"
 	KEYWORDS="~amd64 ~arm"
-	S=${WORKDIR}/${P}-beta
+	S=${WORKDIR}/${PN}-${MY_PV}
 fi
 
-inherit qmake-utils
+inherit qmake-utils udev
 
 DESCRIPTION="Mooltipass crossplatform daemon/tools "
 HOMEPAGE="https://github.com/raoulh/moolticute"
 
-LICENSE="CLOSED"
+LICENSE="GPL-3"
 SLOT="0"
 IUSE=""
 
-RDEPEND=">=dev-qt/qtcore-5.6
-	dev-qt/qtwidgets
-	dev-qt/qtgui
-	dev-qt/qtnetwork
-	dev-qt/qtwebsockets
+RDEPEND=">=dev-qt/qtcore-5.6:5
+	dev-qt/qtwidgets:5
+	dev-qt/qtgui:5
+	dev-qt/qtnetwork:5
+	dev-qt/qtwebsockets:5
 	>=dev-libs/libusb-1.0.20"
 DEPEND="${RDEPEND}"
 
@@ -37,4 +37,11 @@ src_configure() {
 
 src_install() {
 	emake install INSTALL_ROOT="${D}"
+
+	udev_dorules ${FILESDIR}/50-mooltipass.rule
+	doinitd ${FILESDIR}/moolticuted.init
+}
+
+pkg_postinst() {
+	udev_reload
 }
