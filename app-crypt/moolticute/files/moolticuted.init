@@ -2,27 +2,17 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-command=/usr/sbin/moolticuted
+command=/usr/bin/moolticuted
 command_args=""
-pidfile=/var/run/knot/knot.pid
-extra_started_commands="reload"
-description_reload="Reload configuration and changed zones."
+pidfile=/var/run/moolticuted.pid
 
 depend() {
 	need local udev
 }
 
 start() {
-	checkpath -d -m 0750 -o knot:knot /var/run/knot/ /var/lib/knot/
-
 	ebegin "Starting moolticuted"
 	start-stop-daemon --start --background \
 		--make-pidfile --pidfile $pidfile --exec $command -- $command_args
 	eend $?
-}
-
-stop() {
-	ebegin "Stoping moolticuted"
-	start-stop-daemon --stop --pidfile $pidfile
-	ewend $?
 }

@@ -39,7 +39,7 @@ src_install() {
 	emake install INSTALL_ROOT="${D}"
 
 	udev_dorules "${FILESDIR}/50-mooltipass.rule"
-	doinitd "${FILESDIR}/moolticuted.init"
+	newinitd "${FILESDIR}/moolticuted.init" moolticuted
 }
 
 pkg_postinst() {
