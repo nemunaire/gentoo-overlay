@@ -3,12 +3,12 @@
 
 EAPI=6
 
-inherit cmake-utils udev
+inherit cmake-utils gnome2-utils udev
 
 DESCRIPTION="Cross platform personalization tool for the Nitrokey"
 HOMEPAGE="https://github.com/Nitrokey/nitrokey-app"
 SRC_URI="
-	https://github.com/Nitrokey/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz
+	https://github.com/Nitrokey/${PN}/archive/v${PV/_beta/-beta.}.tar.gz -> ${P}.tar.gz
 	https://github.com/Nitrokey/libnitrokey/archive/06c0deb7935a9390a67bc02d6c323e64c785a026.tar.gz -> ${P}-libnitrokey.tar.gz
 	https://github.com/tplgy/cppcodec/archive/61d9b044d6644293f99fb87dfadc15dcab951bd9.tar.gz -> ${P}-cppcodec.tar.gz
 "
@@ -31,13 +31,15 @@ PATCHES=(
 	"${FILESDIR}/0001-cmake-CXX-not-found.patch"
 )
 
+S="${WORKDIR}/${PN}-${PV/_beta/-beta.}"
+
 mycmakeargs=( -DHAVE_LIBAPPINDICATOR=NO )
 
 src_unpack() {
 	unpack ${A}
-	rmdir ${S}/libnitrokey ${S}/3rdparty/cppcodec || die "directory libnitrokey not empty"
-	mv ${WORKDIR}/libnitrokey-* ${S}/libnitrokey || die "Unable to move libnitrokey directory"
-	mv ${WORKDIR}/cppcodec-* ${S}/3rdparty/cppcodec || die "Unable to move cppcodec directory"
+	rmdir "${S}/libnitrokey" "${S}/3rdparty/cppcodec" || die "directory libnitrokey not empty"
+	mv "${WORKDIR}"/libnitrokey-* "${S}/libnitrokey" || die "Unable to move libnitrokey directory"
+	mv "${WORKDIR}"/cppcodec-* "${S}/3rdparty/cppcodec" || die "Unable to move cppcodec directory"
 }
 
 src_prepare() {
@@ -46,6 +48,15 @@ src_prepare() {
 		CMakeLists.txt || die
 }
 
+pkg_preinst() {
+	gnome2_icon_savelist
+}
+
 pkg_postinst() {
 	udev_reload
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
+	gnome2_icon_cache_update
 }
