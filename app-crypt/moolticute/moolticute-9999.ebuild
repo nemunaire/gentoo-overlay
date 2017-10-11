@@ -8,29 +8,42 @@ if [[ ${PV} == 9999* ]]; then
 	inherit git-r3
 	KEYWORDS=""
 else
-	SRC_URI="https://github.com/raoulh/moolticute/archive/v${PV//_/-}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="https://github.com/raoulh/moolticute/archive/v${PV/_/-}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~arm"
 fi
 
-inherit qmake-utils udev
+inherit gnome2-utils qmake-utils udev
 
-DESCRIPTION="Mooltipass crossplatform daemon/tools "
+DESCRIPTION="Mooltipass crossplatform daemon/tools"
 HOMEPAGE="https://github.com/raoulh/moolticute"
 
 LICENSE="GPL-3"
 SLOT="0"
 IUSE=""
 
-RDEPEND=">=dev-qt/qtcore-5.6:5
+RDEPEND="
+	>=dev-libs/libusb-1.0.20
+	>=dev-qt/qtcore-5.6:5
 	dev-qt/qtgui:5
 	dev-qt/qtnetwork:5
 	dev-qt/qttest:5
 	dev-qt/qtwebsockets:5
 	dev-qt/qtwidgets:5
-	>=dev-libs/libusb-1.0.20"
+"
 DEPEND="${RDEPEND}"
 
-S="${WORKDIR}/${P//_/-}"
+S="${WORKDIR}/${P/_/-}"
+
+src_prepare() {
+	default
+
+	# Fill version.h with package version
+	if [[ ${PV} != 9999* ]]; then
+		sed -i "s/\"git\"/\"${PV/_/-} (Gentoo)\"/" src/version.h
+	else
+		sed -i "s/\"git\"/\"git commit $(git log -1 --format=%h) (Gentoo)\"/" src/version.h
+	fi
+}
 
 src_configure() {
 	eqmake5 PREFIX="/usr" Moolticute.pro
@@ -45,4 +58,9 @@ src_install() {
 
 pkg_postinst() {
 	udev_reload
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
+	gnome2_icon_cache_update
 }
