@@ -21,9 +21,10 @@ inherit enlightenment pax-utils
 DESCRIPTION="Enlightenment Foundation Libraries all-in-one package"
 
 LICENSE="BSD-2 GPL-2 LGPL-2.1 ZLIB"
-IUSE="+bmp debug drm +eet egl fbcon +fontconfig fribidi gif gles glib gnutls gstreamer harfbuzz +ico ibus jpeg2k libressl neon oldlua opengl ssl physics pixman +png postscript +ppm +psd pulseaudio raw scim sdl sound systemd tga tiff tslib unwind v4l valgrind wayland webp X xim xine xpm"
+IUSE="+bmp debug drm +eet egl fbcon +fontconfig fribidi gif gles glib gnutls gstreamer harfbuzz +ico ibus jpeg2k libinput libressl neon oldlua opengl ssl physics pixman +png postscript +ppm +psd pulseaudio raw scim sdl sound systemd tga tiff tslib unwind v4l valgrind wayland webp X xim xine xpm"
 
 REQUIRED_USE="
+	drm?		( libinput )
 	pulseaudio?	( sound )
 	opengl?		( || ( X sdl wayland ) )
 	gles?		( || ( X wayland ) )
@@ -36,7 +37,6 @@ REQUIRED_USE="
 
 RDEPEND="
 	drm? (
-		>=dev-libs/libinput-0.8
 		media-libs/mesa[gbm]
 		>=x11-libs/libdrm-2.4
 		>=x11-libs/libxkbcommon-0.3.0
@@ -59,6 +59,7 @@ RDEPEND="
 	harfbuzz? ( media-libs/harfbuzz )
 	ibus? ( app-i18n/ibus )
 	jpeg2k? ( media-libs/openjpeg:0 )
+	libinput? ( >=dev-libs/libinput-0.8 )
 	!oldlua? ( >=dev-lang/luajit-2.0.0 )
 	oldlua? ( dev-lang/lua:* )
 	physics? ( >=sci-physics/bullet-2.80 )
@@ -212,6 +213,7 @@ src_configure() {
 		$(use_enable doc)
 		$(use_enable eet image-loader-eet)
 		$(use_enable egl)
+		$(use_enable libinput elput)
 		$(use_enable fbcon fb)
 		$(use_enable fontconfig)
 		$(use_enable fribidi)
