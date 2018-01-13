@@ -1,0 +1,1 @@
+@daily nemubot tar cvjf /var/lib/nemubot/backup/datas-$(date +\%Y\%m\%d).tar.bz2 -C /var/lib/nemubot/ data/

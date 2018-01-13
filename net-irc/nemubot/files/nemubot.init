@@ -1,0 +1,27 @@
+#!/sbin/openrc-run
+# Copyright 1999-2018 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+pidfile=/var/run/nemubot/nemubot.pid
+command=/usr/bin/nemubot
+command_args="-A -P $pidfile -S /var/run/nemubot/nemubot.sock -l /var/log/nemubot/nemubot.log -D /var/lib/nemubot/datax/ /etc/nemubot.conf"
+required_files=/etc/nemubot.conf
+
+depend() {
+	need localmount net
+}
+
+start() {
+	checkpath -d -m 0750 -o nemubot:nemubot /var/run/nemubot/ /var/lib/nemubot/ /var/log/nemubot/
+
+	ebegin "Starting nemubot"
+	start-stop-daemon --start --user nemubot --group nemubot --chdir /var/lib/nemubot/ \
+		--pidfile $pidfile --exec $command -- $command_args
+	eend $?
+}
+
+stop() {
+	ebegin "Stoping nemubot"
+	start-stop-daemon --stop --pidfile $pidfile
+	ewend $?
+}

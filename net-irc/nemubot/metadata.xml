@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>nemunaire@nemunai.re</email>
+		<name>Pierre-Olivier Mercier</name>
+	</maintainer>
+	<maintainer type="project">
+		<email>proxy-maint@gentoo.org</email>
+		<name>Proxy Maintainers</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">nemunaire/nemubot</remote-id>
+		<bugs-to>https://github.com/nemunaire/nemubot/issues</bugs-to>
+	</upstream>
+	<use>
+		<flag name="backup">
+			Autobackup data's bot through virtual/cron.
+		</flag>
+		<flag name="capstone">
+			Enable capstone module.
+		</flag>
+		<flag name="dns">
+			Enable DNS module.
+		</flag>
+	</use>
+</pkgmetadata>
