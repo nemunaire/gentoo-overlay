@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -9,7 +9,7 @@ DESCRIPTION="Cross platform personalization tool for the Nitrokey"
 HOMEPAGE="https://github.com/Nitrokey/nitrokey-app"
 SRC_URI="
 	https://github.com/Nitrokey/${PN}/archive/v${PV/_beta/-beta.}.tar.gz -> ${P}.tar.gz
-	https://github.com/Nitrokey/libnitrokey/archive/09f80ac4123a2bc02737f19faecb8f2935599cd5.tar.gz -> ${P}-libnitrokey.tar.gz
+	https://github.com/Nitrokey/libnitrokey/archive/f6e999ff3a68993a9f19f2218b59d626e794395b.tar.gz -> ${P}-libnitrokey.tar.gz
 	https://github.com/tplgy/cppcodec/archive/61d9b044d6644293f99fb87dfadc15dcab951bd9.tar.gz -> ${P}-cppcodec.tar.gz
 "
 
@@ -26,10 +26,6 @@ RDEPEND="
 DEPEND="
 	${RDEPEND}
 	virtual/pkgconfig"
-
-PATCHES=(
-	"${FILESDIR}/0001-cmake-CXX-not-found.patch"
-)
 
 S="${WORKDIR}/${PN}-${PV/_beta/-beta.}"
 
