@@ -1,0 +1,16 @@
+#!/sbin/openrc-run
+# Copyright 1999-2018 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+command=/usr/bin/ohsnap
+command_args="-port 8079"
+pidfile=/var/run/ohsnap/ohsnap.pid
+start_stop_daemon_args="--make-pidfile --background --user nobody --group nobody --chdir /var/lib/ohsnap/ --stdout /var/log/ohsnap/ohsnap.log --stderr /var/log/ohsnap/ohsnap.log"
+
+depend() {
+	need localmount mysql net
+}
+
+start_pre() {
+	checkpath -d -m 0750 -o nobody:nobody /var/run/ohsnap/ /var/lib/ohsnap/ /var/log/ohsnap/
+}
