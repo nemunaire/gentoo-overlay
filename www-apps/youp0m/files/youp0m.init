@@ -1,0 +1,16 @@
+#!/sbin/openrc-run
+# Copyright 1999-2018 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+command=/usr/bin/youp0m
+command_args="-bind :8078"
+pidfile=/var/run/youp0m/youp0m.pid
+start_stop_daemon_args="--make-pidfile --background --user nobody --group nobody --chdir /var/lib/youp0m/ --stdout /var/log/youp0m/youp0m.log --stderr /var/log/youp0m/youp0m.log"
+
+depend() {
+	need localmount net
+}
+
+start_pre() {
+	checkpath -d -m 0750 -o nobody:nobody /var/run/youp0m/ /var/lib/youp0m/ /var/log/youp0m/
+}
