@@ -5,6 +5,7 @@ This overlay includes ebuilds for the following packages:
 
 * `dev-python/qarnot`: Qarnot computing SDK (https://computing.qarnot.com)
 * `net-im/netsoul-purple`: Netsoul plugin for libpurple (https://github.com/sekh/netsoul-purple)
+* `net-irc/matterircd`: IRC gateway to Mattermost and Slack (https://github.com/42wim/matterircd)
 
 Usage with Layman
 -----------------
