@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>nemunaire@nemunai.re</email>
+		<name>Pierre-Olivier Mercier</name>
+	</maintainer>
+	<use>
+		<flag name="build-client">
+			Also build the client code, instead of getting precompiled one from archive. This requires sys-apps/yarn (that doesn't work on some architectures) and network connectivity during the compilation.
+		</flag>
+	</use>
+</pkgmetadata>

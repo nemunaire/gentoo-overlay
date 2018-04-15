@@ -1,0 +1,16 @@
+#!/sbin/openrc-run
+# Copyright 1999-2018 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+command=/usr/bin/mattermost
+command_args="-c /etc/mattermost.json"
+pidfile=/var/run/mattermost/mattermost.pid
+start_stop_daemon_args="--make-pidfile --background --user nobody --group nobody --chdir /usr/share/webapps/mattermost/"
+
+depend() {
+    need localmount net
+}
+
+start_pre() {
+    checkpath -d -m 0750 -o nobody:nobody /var/run/mattermost/ /var/lib/mattermost/
+}
