@@ -49,15 +49,15 @@ src_prepare() {
 	case "${CHOST}" in
 		i686*)
 			sed -r -i ${S}/build/release.mk \
-				-e "5,6s/amd64/386/"
+				-e "s/amd64/386/"
 			;;
 		armv8*|aarch64*)
 			sed -r -i ${S}/build/release.mk \
-				-e "5,6s/amd64/arm64/"
+				-e "s/amd64/arm64/"
 			;;
 		arm*)
 			sed -r -i ${S}/build/release.mk \
-				-e "5,6s/amd64/arm/"
+				-e "s/amd64/arm/"
 			;;
 	esac
 
@@ -75,7 +75,7 @@ src_compile() {
 	export GOPATH=${WORKDIR}
 
 	emake build-linux
-	use build-client && emake build-client && emake package-linux
+	use build-client && emake build-client && emake package
 }
 
 src_install() {
@@ -88,7 +88,7 @@ src_install() {
 		cp -a ${S}/dist/${PN} "${D}"/usr/share/webapps/ || die
 	else
 		install -dm755 "${D}"/usr/share/webapps/${PN} || die
-		cp -a ${PN}/client ${PN}/fonts ${PN}/i18n ${PN}/templates "${D}"/usr/share/webapps/${PN} || die
+		cp -a ${WORKDIR}/${PN}/client ${WORKDIR}/${PN}/fonts ${WORKDIR}/${PN}/i18n ${WORKDIR}/${PN}/templates "${D}"/usr/share/webapps/${PN} || die
 	fi
 
 	rm -rf \
@@ -98,9 +98,9 @@ src_install() {
 	   ${D}/usr/share/webapps/${PN}/NOTICE.txt \
 	   ${D}/usr/share/webapps/${PN}/README.md || die
 
-	keepdir /var/lib/${PN}/logs/
+	keepdir /var/log/${PN}/
 	keepdir /var/lib/${PN}/plugins/
-	ln -s /var/lib/${PN}/logs/ ${D}/usr/share/webapps/${PN}/logs || die
+	ln -s /var/log/${PN}/ ${D}/usr/share/webapps/${PN}/logs || die
 	ln -s /var/lib/${PN}/plugins/ ${D}/usr/share/webapps/${PN}/plugins || die
 
 	insinto /etc/
