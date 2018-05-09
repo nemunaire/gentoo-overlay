@@ -12,5 +12,5 @@ depend() {
 }
 
 start_pre() {
-    checkpath -d -m 0750 -o nobody:nobody /var/run/mattermost/ /var/lib/mattermost/
+    checkpath -d -m 0750 -o nobody:nobody /var/run/mattermost/ /var/lib/mattermost/ /var/log/mattermost/
 }
