@@ -8,7 +8,7 @@ pidfile=/var/run/matterircd/matterircd.pid
 start_stop_daemon_args="--make-pidfile --background --user nobody --group nobody --chdir /var/run/matterircd --stdout /var/log/matterircd/matterircd.log --stderr /var/log/matterircd/matterircd.log"
 
 depend() {
-	need net
+	need net mattermost
 }
 
 start_pre() {

@@ -16,8 +16,7 @@ start_stop_daemon_args="--user ${user} --group ${group} \
 	--stderr /var/log/${SVCNAME}/${SVCNAME}.log"
 
 depend() {
-	need net
-	after net
+	need net mysql
 }
 
 start_pre() {

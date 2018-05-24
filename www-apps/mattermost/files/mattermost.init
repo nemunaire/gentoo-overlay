@@ -8,7 +8,7 @@ pidfile=/var/run/mattermost/mattermost.pid
 start_stop_daemon_args="--make-pidfile --background --user nobody --group nobody --chdir /usr/share/webapps/mattermost/"
 
 depend() {
-    need localmount net
+    need localmount net mysql
 }
 
 start_pre() {
