@@ -1,0 +1,12 @@
+#!/sbin/openrc-run
+# Copyright 1999-2018 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+command=/usr/bin/webircgateway
+command_args="-config /etc/kiwiirc-webircgateway.conf"
+pidfile=/var/run/webircgateway/webircgateway.pid
+start_stop_daemon_args="--make-pidfile --background --user nobody --group nobody --chdir /var/run/webircgateway --stdout /var/log/webircgateway/webircgateway.log --stderr /var/log/webircgateway/webircgateway.log"
+
+start_pre() {
+	checkpath -d -m 0750 -o nobody:nobody /var/run/webircgateway/ /var/log/webircgateway/
+}
