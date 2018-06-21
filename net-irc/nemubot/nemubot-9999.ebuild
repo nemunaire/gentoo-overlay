@@ -26,6 +26,7 @@ IUSE="backup +capstone +dns"
 # TODO: append ratp.trafic
 RDEPEND="
 	backup? ( app-arch/bzip2 virtual/cron )
+	app-text/aspell
 	capstone? ( dev-libs/capstone[python,${PYTHON_USEDEP}] )
 	dns? ( dev-python/dnspython[${PYTHON_USEDEP}] )
 	dev-python/beautifulsoup[${PYTHON_USEDEP}]
