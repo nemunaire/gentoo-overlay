@@ -1,0 +1,14 @@
+[Unit]
+Description=Matrix Homeserver
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/synctl start
+ExecStop=/usr/bin/synctl stop
+PrivateTmp=true
+User=synapse
+Group=synapse
+WorkingDirectory=/var/lib/matrix-synapse
+
+[Install]
+WantedBy=multi-user.target

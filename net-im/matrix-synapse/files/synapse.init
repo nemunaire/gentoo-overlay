@@ -1,0 +1,34 @@
+#!/sbin/openrc-run
+# Copyright 1999-2018 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+command=/usr/bin/synctl
+command_args="start"
+pidfile=/var/run/matrix-synapse/knot.pid
+required_files=/var/lib/matrix-synapse/homeserver.yaml
+
+depend() {
+        need net dns
+}
+
+start() {
+        checkpath -d -m 0750 -o synapse:synapse /var/run/matrix-synapse/ /var/lib/matrix-synapse/
+
+        ebegin "Starting synapse"
+        start-stop-daemon --start \
+                --pidfile $pidfile --chdir /var/lib/matrix-synapse --exec $command --user synapse:synapse -- $command_args
+        eend $?
+}
+
+stop() {
+        ebegin "Stoping synapse"
+        cd /var/lib/matrix-synapse
+        /usr/bin/synctl stop
+        # In case remote control is not working
+        if [ "$?" != 0 ]; then
+                if [ -f $pidfile ]; then
+                        start-stop-daemon --stop --pidfile $pidfile
+                fi
+        fi
+        ewend $?
+}
