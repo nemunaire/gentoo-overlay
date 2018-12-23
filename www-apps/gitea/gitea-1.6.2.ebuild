@@ -30,7 +30,9 @@ src_prepare() {
 	local GITEA_PREFIX=${EPREFIX}/var/lib/gitea
 	sed -i -e "s/git rev-parse --short HEAD/echo ${GIT_COMMIT}/"\
 		-e "s/\"main.Version.*$/\"main.Version=${PV}\"/"\
-		-e "s/-ldflags '-s/-ldflags '/" src/${EGO_PN}/Makefile || die
+		-e "s/-ldflags '-s/-ldflags '/" \
+		-e "s/GOFLAGS := -i -v/GOFLAGS := -v/" \
+		src/${EGO_PN}/Makefile || die
 	sed -i -e "s#^APP_DATA_PATH = data#APP_DATA_PATH = ${GITEA_PREFIX}/data#"\
 		-e "s#^PATH = data/gitea.db#PATH = ${GITEA_PREFIX}/data/gitea.db#"\
 		-e "s#^PROVIDER_CONFIG = data/sessions#PROVIDER_CONFIG = ${GITEA_PREFIX}/data/sessions#"\
