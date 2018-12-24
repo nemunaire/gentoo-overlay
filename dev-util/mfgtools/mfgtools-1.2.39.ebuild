@@ -19,12 +19,13 @@ HOMEPAGE="https://github.com/NXPmicro/mfgtools"
 
 LICENSE="BSD-3"
 SLOT="0"
-IUSE=""
+IUSE="-doc"
 
 RDEPEND="
 	dev-libs/libzip
 	sys-libs/zlib
 	virtual/libusb
+	doc? ( app-doc/doxygen )
 "
 DEPEND="
 	${RDEPEND}
@@ -37,4 +38,12 @@ src_prepare() {
 	default
 	cmake-utils_src_prepare
 	echo "#define GIT_VERSION \"libuuu_${PV}\"" > "${S}/libuuu/gitversion.h"
+}
+
+src_configure() {
+	local mycmakeargs=(
+		-DBUILD_DOC=$(usex doc ON OFF)
+	)
+
+	cmake-utils_src_configure
 }
