@@ -12,7 +12,7 @@ else
 	KEYWORDS="~amd64 ~arm"
 fi
 
-inherit cmake-utils
+inherit cmake-utils udev
 
 DESCRIPTION="Freescale/NXP I.MX Chip image deploy tools"
 HOMEPAGE="https://github.com/NXPmicro/mfgtools"
@@ -46,4 +46,14 @@ src_configure() {
 	)
 
 	cmake-utils_src_configure
+}
+
+src_install() {
+	cmake-utils_src_install
+
+	udev_dorules "${FILESDIR}/99-librem5-devkit.rule"
+}
+
+pkg_postinst() {
+	udev_reload
 }
