@@ -1,9 +1,9 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-PYTHON_COMPAT=( python2_7 python3_{5,6} )
+PYTHON_COMPAT=( python2_7 python3_{5,6,7} )
 
 inherit distutils-r1 systemd user
 
@@ -38,10 +38,10 @@ RDEPEND="
 	>=dev-python/psutil-2.0.0[${PYTHON_USEDEP}]
 	>=dev-python/pysaml2-4.0.2[${PYTHON_USEDEP}]
 	>=dev-python/pymacaroons-pynacl-0.9.3[${PYTHON_USEDEP}]
-	>=dev-python/msgpack-0.3.0[${PYTHON_USEDEP}]
+	>=dev-python/msgpack-0.4.2[${PYTHON_USEDEP}]
 	>=dev-python/phonenumbers-8.2.0[${PYTHON_USEDEP}]
 	dev-python/six[${PYTHON_USEDEP}]
-	>=dev-python/prometheus_client-0.2.0[${PYTHON_USEDEP}]
+	<dev-python/prometheus_client-0.4.0[${PYTHON_USEDEP}]
 	>=dev-python/attrs-16.0.0[${PYTHON_USEDEP}]
 	>=dev-python/netaddr-0.7.18[${PYTHON_USEDEP}]
 	virtual/libffi
