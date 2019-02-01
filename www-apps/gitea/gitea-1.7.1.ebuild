@@ -8,12 +8,11 @@ EGO_PN="code.gitea.io/gitea"
 KEYWORDS="~amd64 ~arm"
 
 DESCRIPTION="A painless self-hosted Git service, written in Go"
-HOMEPAGE="https://github.com/go-gitea/gitea"
+HOMEPAGE="https://gitea.io/"
 SRC_URI="https://github.com/go-gitea/gitea/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-IUSE=""
 
 DEPEND="
 	dev-go/go-bindata
@@ -35,15 +34,9 @@ src_prepare() {
 		-e "s/-ldflags '-s/-ldflags '/" \
 		-e "s/GOFLAGS := -i -v/GOFLAGS := -v/" \
 		"src/${EGO_PN}/Makefile" || die
-	local GITEA_PREFIX="${EPREFIX}/var/lib/gitea"
-	sed -i -e "s#^APP_DATA_PATH = data#APP_DATA_PATH = ${GITEA_PREFIX}/data#"\
-		-e "s#^PATH = data/gitea.db#PATH = ${GITEA_PREFIX}/data/gitea.db#"\
-		-e "s#^PROVIDER_CONFIG = data/sessions#PROVIDER_CONFIG = ${GITEA_PREFIX}/data/sessions#"\
-		-e "s#^AVATAR_UPLOAD_PATH = data/avatars#AVATAR_UPLOAD_PATH = ${GITEA_PREFIX}/data/avatars#"\
-		-e "s#^TEMP_PATH = data/tmp/uploads#TEMP_PATH = ${GITEA_PREFIX}/data/tmp/uploads#"\
-		-e "s#^PATH = data/attachments#PATH = ${GITEA_PREFIX}/data/attachments#"\
+	sed -i -e "s#^RUN_MODE = dev#RUN_MODE = prod#"\
+		-e "s#^LOG_SQL = true#LOG_SQL = false#"\
 		-e "s#^ROOT_PATH =#ROOT_PATH = ${EPREFIX}/var/log/gitea#"\
-		-e "s#^ISSUE_INDEXER_PATH =#ISSUE_INDEXER_PATH = ${GITEA_PREFIX}/indexers/issues.bleve#"\
 		"src/${EGO_PN}/custom/conf/app.ini.sample" || die
 }
 
