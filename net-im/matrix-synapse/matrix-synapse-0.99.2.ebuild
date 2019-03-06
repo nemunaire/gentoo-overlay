@@ -37,7 +37,7 @@ RDEPEND="
 	>=dev-python/sortedcontainers-1.4.4[${PYTHON_USEDEP}]
 	>=dev-python/psutil-2.0.0[${PYTHON_USEDEP}]
 	>=dev-python/pysaml2-4.0.2[${PYTHON_USEDEP}]
-	>=dev-python/pymacaroons-pynacl-0.9.3[${PYTHON_USEDEP}]
+	>=dev-python/pymacaroons-0.13.0[${PYTHON_USEDEP}]
 	>=dev-python/msgpack-0.5.0[${PYTHON_USEDEP}]
 	>=dev-python/phonenumbers-8.2.0[${PYTHON_USEDEP}]
 	dev-python/six[${PYTHON_USEDEP}]
