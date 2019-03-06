@@ -1,0 +1,30 @@
+#!/sbin/openrc-run
+# Copyright 2016-2019 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+description="Open source Confluence alternative"
+pidfile=${pidfile:-"/run/${SVCNAME}/${SVCNAME}.pid"}
+user=${user:-nobody}
+group=${group:-nogroup}
+
+command="/usr/bin/documize"
+command_background="true"
+start_stop_daemon_args="--user ${user} --group ${group} \
+	-e DOCUMIZEPORT=${DOCUMIZEPORT} \
+	-e DOCUMIZEFORCESSLPORT=${DOCUMIZEFORCESSLPORT} \
+	-e DOCUMIZECERT=${DOCUMIZECERT} \
+	-e DOCUMIZEKEY=${DOCUMIZEKEY} \
+	-e DOCUMIZESALT=${DOCUMIZESALT} \
+	-e DOCUMIZEDB=${DOCUMIZEDB} \
+	-e DOCUMIZEDBTYPE=${DOCUMIZEDBTYPE} \
+	--stdout /var/log/${SVCNAME}/${SVCNAME}.log \
+	--stderr /var/log/${SVCNAME}/${SVCNAME}.log"
+
+depend() {
+	need net
+	after net mysql
+}
+
+start_pre() {
+	checkpath -d -m 0755 -o "${user}":"${group}" "${pidfile%/*}"
+}

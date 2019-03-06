@@ -1,0 +1,27 @@
+[Unit]
+Description=Open source Confluence alternative
+Documentation=https://www.documize.com/
+
+AssertPathIsDirectory=/var/lib/documize
+AssertPathIsReadWrite=/var/lib/documize
+
+After=network.target
+Requires=network.target
+After=mysqld.service
+After=postgresql.service
+After=memcached.service
+After=redis.service
+
+[Service]
+User=nobody
+Group=nogroup
+
+WorkingDirectory=/var/lib/documize
+ExecStart=/usr/bin/documize
+
+Restart=always
+PrivateTmp=true
+Nice=5
+
+[Install]
+WantedBy=multi-user.target
