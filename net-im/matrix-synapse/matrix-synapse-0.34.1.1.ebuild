@@ -61,5 +61,5 @@ python_install_all() {
 
 pkg_postinst() {
 	enewgroup synapse
-	enewuser synapse -1 -1 /var/lib/synapse synapse
+	enewuser synapse -1 -1 /var/lib/matrix-synapse synapse
 }
