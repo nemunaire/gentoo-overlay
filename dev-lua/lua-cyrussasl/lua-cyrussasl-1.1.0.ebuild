@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -23,14 +23,13 @@ src_prepare() {
 	sed -i '/CFLAGS=/d;/LDFLAGS=/d;/LUAPATH=/d;/CPATH=/d' Makefile \
 		|| die "Unable to remove bad variables overwrite."
 
+	sed -i '/$(LDFLAGS)/s/$/ $(LIBS)/' Makefile \
+		|| die "Unable do required subtitution."
+
 	append-cflags -fpic
 	append-ldflags -O -shared -fpic
 	append-libs -lsasl2 -llua
 
-	default
-}
-
-src_compile() {
 	default
 }
 
