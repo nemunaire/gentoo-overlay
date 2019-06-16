@@ -4,7 +4,7 @@
 
 command=/usr/bin/synctl
 command_args="start"
-pidfile=/var/run/matrix-synapse/knot.pid
+pidfile=/var/run/matrix-synapse/homeserver.pid
 required_files=/var/lib/matrix-synapse/homeserver.yaml
 
 depend() {
