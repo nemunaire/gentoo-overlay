@@ -20,12 +20,14 @@ IUSE=""
 
 RDEPEND="
 	dev-lang/python[sqlite]
+	>=dev-python/jinja-2.9[${PYTHON_USEDEP}]
 	>=dev-python/jsonschema-2.5.1[${PYTHON_USEDEP}]
 	>=dev-python/frozendict-1.0.0[${PYTHON_USEDEP}]
 	>=dev-python/unpaddedbase64-1.1.0[${PYTHON_USEDEP}]
 	>=dev-python/canonicaljson-1.1.3[${PYTHON_USEDEP}]
 	>=dev-python/signedjson-1.0.0[${PYTHON_USEDEP}]
 	>=dev-python/pynacl-1.2.1[${PYTHON_USEDEP}]
+	>=dev-python/idna-2[${PYTHON_USEDEP}]
 	>=dev-python/service_identity-18.1.0[${PYTHON_USEDEP}]
 	>=dev-python/twisted-18.7.0[${PYTHON_USEDEP}]
 	>=dev-python/treq-15.1.0[${PYTHON_USEDEP}]
