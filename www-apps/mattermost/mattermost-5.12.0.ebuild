@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -36,8 +36,7 @@ src_prepare() {
 	# Enforce build hash to Arch Linux (Enterprise hash is already set to
 	# none), instead of the official git hash value.
 	sed -r -i "${S}/Makefile" \
-		-e "s/^(\s*)BUILD_HASH(_ENTERPRISE)? =.*/\1BUILD_HASH\2 = Gentoo \(${CHOST}\)/" \
-		-e 's/-X (.*)(\$\(BUILD_HASH(_ENTERPRISE)?\))(.*)/-X '\''\1\2'\''\4/'
+		-e "s/^(\s*)BUILD_HASH(_ENTERPRISE)? =.*/\1BUILD_HASH\2 = Gentoo \(${CHOST}\)/"
 
 	# The configuration isn't available at this time yet, modify the default.
 	sed -r -i "${S}/build/release.mk" \
@@ -73,6 +72,7 @@ src_compile() {
 	export BUILD_NUMBER="${PVR}"
 	export LANG=C
 	export GOPATH="${WORKDIR}"
+	export LDFLAGS=""
 
 	emake build-linux
 	use build-client && emake build-client && emake package
