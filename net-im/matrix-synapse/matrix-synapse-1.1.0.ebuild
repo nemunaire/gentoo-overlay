@@ -20,6 +20,7 @@ IUSE=""
 
 RDEPEND="
 	dev-lang/python[sqlite]
+	>=dev-python/bleach-1.4.3[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.9[${PYTHON_USEDEP}]
 	>=dev-python/jsonschema-2.5.1[${PYTHON_USEDEP}]
 	>=dev-python/frozendict-1.0.0[${PYTHON_USEDEP}]
