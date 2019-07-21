@@ -1,0 +1,127 @@
+#!/sbin/openrc-run
+
+[[ -z "${PIDFILE}" ]] && PIDFILE="/var/run/gunicorn/${SVCNAME}.pid"
+[[ -z "${BINARY}" ]] && BINARY="/usr/bin/gunicorn"
+
+depend() {
+    need net
+    use dns logger netmount
+}
+
+check_params() {
+    if [[ "${SVCNAME}" == "gunicorn" && -z "${I_KNOW}" ]]; then
+        ewarn "It is highly recommended to use a symbolic link for this"
+        ewarn "script and start via that instead. This allows you to run"
+        ewarn "multiple spawn services simultaneously. To do this, simply:"
+        ewarn
+        ewarn "  ln -s /etc/init.d/gunicorn /etc/init.d/gunicorn.mysvc"
+        ewarn "  cp /etc/conf.d/gunicorn /etc/conf.d/gunicorn.mysvc"
+        ewarn
+        ewarn "If you don't want to be bothered by this message, set I_KNOW=yes"
+        ewarn "in your configuration file."
+        ewarn
+    fi
+
+    if [[ -z "${WSGI_APP}" ]] && [[ -z "${WSGI_TYPE}" ]]; then
+        eerror "${WSGI_APP} not set. Exiting"
+        return 1
+    fi
+
+    if [[ -z "${PIDFILE}" ]]; then
+        eerror "PIDFILE must be set in /etc/conf.d/${SVCNAME}"
+        return 1
+    fi
+}
+
+test_pidfile() {
+    if [[ ! -f "${PIDFILE}" ]]; then
+        eerror "${PIDFILE} does not exist"
+        return 1
+    fi
+
+    read -r PID <"${PIDFILE}"
+
+    if [[ -z "${PID}" ]]; then
+        eerror "${PIDFILE} contains no PID"
+        return 1
+    fi
+
+    if [[ ! -d "/proc/${PID}" ]]; then
+        eerror "${PID} does not appear to be an existing process"
+        return 1
+    fi
+    
+    if awk -F: 'BEGIN { found = 0; } END { exit(found); }; $1 == "State" && $2 !~ /^[[:space:]]*Z / { found = 1; };' "/proc/${PID}/status"; then
+        eerror "${PID} does not appear to be an active process"
+        return 1
+    fi
+    
+    return 0
+}
+
+kill_pidfile() {
+    check_params && test_pidfile || return 1
+
+    ebegin "$1"
+    shift
+    read -r PID <"${PIDFILE}"
+    kill "$@" "${PID}"
+    local RC=$?
+    eend $RC
+    
+    return $RC
+}
+
+# actions
+
+start() {
+    check_params || return 1
+
+    mkdir -p /var/run/gunicorn
+
+    local -a OPTS
+    OPTS=( "--user=${USER}"
+           "--group=${GROUP}"
+           "--daemon"
+           "--pid=${PIDFILE}"
+           "--paste"
+           "${WSGI_APP}" )
+
+    ebegin "Starting ${SVCNAME} using ${CONFIG}"
+    env PYTHONPATH="${PYTHONPATH}" "${BINARY}" "${OPTS[@]}"
+    local RC=$?
+    eend "${RC}"
+
+    if [[ "${RC}" == 0 ]]; then
+        ebegin "No early errors, checking liveliness"
+        sleep 1
+        if ! test_pidfile; then
+            eend 1
+            return 1
+        fi
+        eend 0
+    fi
+    
+    return "${RC}"
+}
+
+status() {
+    check_params && test_pidfile
+}
+
+stop() {
+    kill_pidfile "Stopping (gracefully) ${SVCNAME}" \
+                 -s QUIT
+}
+
+force_stop() {
+    kill_pidfile "Stopping (disregarding jobs) ${SVCNAME}" \
+                 -s INT
+}
+
+reload() {
+    kill_pidfile "Telling ${SVCNAME} to reload itself" \
+                 -s HUP
+}
+
+extra_commands="${opts} status reload force_stop"
