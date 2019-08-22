@@ -33,14 +33,10 @@ src_prepare() {
 	sed -r -i "${S}/Makefile" \
 		-e 's/^clean: stop-docker/clean:/'
 
-	# Enforce build hash to Arch Linux (Enterprise hash is already set to
+	# Enforce build hash to Gentoo (Enterprise hash is already set to
 	# none), instead of the official git hash value.
 	sed -r -i "${S}/Makefile" \
 		-e "s/^(\s*)BUILD_HASH(_ENTERPRISE)? =.*/\1BUILD_HASH\2 = Gentoo \(${CHOST}\)/"
-
-	# The configuration isn't available at this time yet, modify the default.
-	sed -r -i "${S}/build/release.mk" \
-		-e 's/\$\(DIST_PATH\)\/config\/config.json/\$\(DIST_PATH\)\/config\/default.json/'
 
 	# The Go programming language only supports 8 instruction sets, therefore
 	# we cannot rely on ${CARCH} and need to cast manually.
@@ -76,6 +72,7 @@ src_compile() {
 
 	emake build-linux
 	use build-client && emake build-client && emake package
+	emake config-reset
 }
 
 src_install() {
@@ -106,8 +103,8 @@ src_install() {
 	insinto /etc/
 	sed -e 's@"Directory": ".*"@"Directory": "/var/lib/mattermost/"@g' \
 		-e 's@tcp(dockerhost:3306)@unix(/run/mysqld/mysqld.sock)@g' \
-		-i "${S}/config/default.json" || die
-	newins "${S}/config/default.json" mattermost.json
+		-i "${S}/config/config.json" || die
+	newins "${S}/config/config.json" mattermost.json
 
 	dodoc NOTICE.txt README.md
 
