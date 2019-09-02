@@ -24,7 +24,7 @@ RDEPEND="
 	>=dev-python/certifi-2019.3.9[${PYTHON_USEDEP}]
 	>=dev-python/chardet-3.0.4[${PYTHON_USEDEP}]
 	>=dev-python/configparser-3.5.0[${PYTHON_USEDEP}]
-	>=dev-python/cornice-0.17[${PYTHON_USEDEP}]
+	dev-python/cornice[${PYTHON_USEDEP}]
 	>=dev-python/enum34-1.1.6[${PYTHON_USEDEP}]
 	>=dev-python/flake8-3.5.0[${PYTHON_USEDEP}]
 	>=dev-python/futures-3.2.0[${PYTHON_USEDEP}]

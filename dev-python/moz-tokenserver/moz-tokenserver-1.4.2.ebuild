@@ -26,7 +26,7 @@ RDEPEND="
 	>=dev-python/cffi-1.12.2[${PYTHON_USEDEP}]
 	>=dev-python/chardet-3.0.4[${PYTHON_USEDEP}]
 	>=dev-python/configparser-3.7.4[${PYTHON_USEDEP}]
-	>=dev-python/cornice-3.5.1[${PYTHON_USEDEP}]
+	dev-python/cornice[${PYTHON_USEDEP}]
 	>=dev-python/cryptography-2.6.1[${PYTHON_USEDEP}]
 	>=dev-python/enum34-1.1.6[${PYTHON_USEDEP}]
 	>=dev-python/hawkauthlib-2.0.0[${PYTHON_USEDEP}]

@@ -17,7 +17,7 @@ IUSE=""
 
 RDEPEND="
 	>=dev-python/configparser-1.5.0[${PYTHON_USEDEP}]
-	dev-python/cornice[${PYTHON_USEDEP}]
+	<dev-python/cornice-0.17[${PYTHON_USEDEP}]
 	dev-python/moz-server-syncstorage[${PYTHON_USEDEP}]
 	dev-python/moz-tokenserver[${PYTHON_USEDEP}]
 	dev-python/mozsvc[${PYTHON_USEDEP}]
