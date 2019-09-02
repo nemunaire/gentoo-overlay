@@ -26,6 +26,12 @@ DEPEND="
 "
 RDEPEND=""
 
+src_configure() {
+	env GOPATH="${WORKDIR}/${P}:$(get_golibdir_gopath)" \
+		GOCACHE="${T}/go-cache" \
+		go generate -v -work "${EGO_PN}"
+}
+
 src_install() {
 	mv ${PN}.git ${PN}
 	dobin ${PN}
