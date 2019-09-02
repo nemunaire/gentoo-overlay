@@ -13,7 +13,7 @@ DESCRIPTION="The SyncServer server software, as used by Firefox Sync"
 HOMEPAGE="https://github.com/mozilla-services/server-syncstorage"
 SRC_URI="https://github.com/mozilla-services/server-syncstorage/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
-LICENSE="MPL"
+LICENSE="MPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""

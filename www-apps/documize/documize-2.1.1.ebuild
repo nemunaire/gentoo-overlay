@@ -11,7 +11,7 @@ DESCRIPTION="Open source Confluence alternative built with Golang + EmberJS"
 HOMEPAGE="https://www.documize.com/"
 SRC_URI="https://github.com/documize/community/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
-LICENSE="AGPL3"
+LICENSE="AGPL-3"
 SLOT="0"
 IUSE=""
 

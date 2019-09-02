@@ -10,7 +10,7 @@ inherit distutils-r1 user
 DESCRIPTION="Run-Your-Own Firefox Sync Server"
 SRC_URI="https://github.com/mozilla-services/syncserver/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
-LICENSE="MPL"
+LICENSE="MPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""

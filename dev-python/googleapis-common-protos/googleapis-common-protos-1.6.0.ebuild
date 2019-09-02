@@ -11,7 +11,7 @@ DESCRIPTION="Common protobufs used in Google APIs"
 HOMEPAGE="https://github.com/googleapis/googleapis"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
-LICENSE="Apache2.0"
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""

@@ -11,7 +11,7 @@ DESCRIPTION="Yet Another Config Parser."
 HOMEPAGE="https://github.com/mozilla-services/konfig"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
-LICENSE="MPL2.0"
+LICENSE="MPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""

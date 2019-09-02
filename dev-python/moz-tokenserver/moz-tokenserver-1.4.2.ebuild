@@ -13,7 +13,7 @@ DESCRIPTION="The Mozilla Token Server"
 HOMEPAGE="http://docs.services.mozilla.com/token/index.html"
 SRC_URI="https://github.com/mozilla-services/tokenserver/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
-LICENSE="MPL"
+LICENSE="MPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""

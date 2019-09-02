@@ -11,7 +11,7 @@ DESCRIPTION="Module that emits CEF logs"
 HOMEPAGE="https://github.com/mozilla/cef"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
-LICENSE="MPL"
+LICENSE="MPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""

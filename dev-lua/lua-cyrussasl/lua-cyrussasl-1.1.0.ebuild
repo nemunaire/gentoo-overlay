@@ -9,7 +9,7 @@ DESCRIPTION="Cyrus SASL library for Lua 5.1+ "
 HOMEPAGE="https://github.com/JorjBauer/lua-cyrussasl"
 SRC_URI="https://github.com/JorjBauer/lua-cyrussasl/archive/v${PV}.zip"
 
-LICENSE="BSD3"
+LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~arm"
 

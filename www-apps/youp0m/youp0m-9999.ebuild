@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -16,7 +16,7 @@ fi
 inherit golang-build
 
 DESCRIPTION="Display a daily cute picture"
-HOMEPAGE="https://ohsnap.p0m.fr"
+HOMEPAGE="https://you.p0m.fr"
 LICENSE="AGPL-3"
 SLOT="0"
 IUSE=""
