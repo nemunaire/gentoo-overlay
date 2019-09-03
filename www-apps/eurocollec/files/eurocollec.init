@@ -4,7 +4,7 @@
 
 command=/usr/bin/eurocollec
 command_args="-bind :8074"
-pidfile=/var/run/ohsnap/eurocollec.pid
+pidfile=/var/run/eurocollec/eurocollec.pid
 start_stop_daemon_args="--make-pidfile --background --user nobody --group nobody --stdout /var/log/eurocollec/eurocollec.log --stderr /var/log/eurocollec/eurocollec.log"
 
 depend() {
