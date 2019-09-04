@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -28,8 +28,15 @@ RDEPEND="
 		dev-perl/LWP-Protocol-https
 		dev-perl/MailTools
 	)
+	media-libs/libexif
 	virtual/mysql
 "
+
+src_prepare() {
+	cd "src/${EGO_PN}"
+	GOPATH="${WORKDIR}/${P}:$(get_golibdir_gopath)" go get -v
+	default
+}
 
 src_install() {
 	use smtp-bridge && dobin src/${EGO_PN}/smtp_bridge.pl
