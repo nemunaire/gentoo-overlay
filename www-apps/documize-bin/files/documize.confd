@@ -1,0 +1,14 @@
+# Basic settings
+DOCUMIZEPORT=5001
+
+# Security settings
+DOCUMIZESALT=
+
+# Database settings
+DOCUMIZEDBTYPE=mariadb
+DOCUMIZEDB=documize:password@/documize
+
+# Configuration for embeded SSL
+#DOCUMIZEFORCESSLPORT=
+#DOCUMIZECERT=
+#DOCUMIZEKEY=
