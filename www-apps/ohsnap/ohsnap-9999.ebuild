@@ -20,7 +20,10 @@ HOMEPAGE="https://ohsnap.p0m.fr"
 LICENSE="AGPL-3"
 SLOT="0"
 IUSE="+smtp-bridge"
-DEPEND="dev-go/mysql"
+DEPEND="
+	dev-go/go-bindata
+	dev-go/mysql
+"
 RDEPEND="
 	smtp-bridge? (
 		dev-perl/Email-MIME
@@ -36,6 +39,12 @@ src_prepare() {
 	cd "src/${EGO_PN}"
 	GOPATH="${WORKDIR}/${P}:$(get_golibdir_gopath)" go get -v
 	default
+}
+
+src_configure() {
+	env GOPATH="${WORKDIR}/${P}:$(get_golibdir_gopath)" \
+		GOCACHE="${T}/go-cache" \
+		go generate -v -work "${EGO_PN}"
 }
 
 src_install() {

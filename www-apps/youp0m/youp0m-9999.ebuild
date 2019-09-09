@@ -21,6 +21,7 @@ LICENSE="AGPL-3"
 SLOT="0"
 IUSE=""
 DEPEND="
+	dev-go/go-bindata
 	dev-go/go-crypt
 	dev-go/resize
 "
