@@ -1,9 +1,9 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
-PYTHON_COMPAT=( python3_{4,5,6} )
+PYTHON_COMPAT=( python3_{4,5,6,7} )
 
 if [[ ${PV} == *9999 ]] ; then
 	EGIT_REPO_URI="https://github.com/nemunaire/check_openpgpkey.git"
@@ -25,7 +25,7 @@ SLOT="0"
 IUSE=""
 
 DEPEND=">=app-crypt/gnupg-2
-		dev-python/dnspython:py3
+		dev-python/dnspython
 		net-analyzer/nagios-plugins"
 RDEPEND="${DEPEND}"
 
