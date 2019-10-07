@@ -1,10 +1,9 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
-PYTHON_COMPAT=( python3_{4,5} )
+PYTHON_COMPAT=( python3_{5,6,7} )
 
 if [[ ${PV} == *9999 ]] ; then
 	EGIT_REPO_URI="https://github.com/debfx/check_dane.git"
@@ -28,7 +27,7 @@ SLOT="0"
 IUSE=""
 
 DEPEND="dev-libs/openssl:0
-		dev-python/dnspython:py3
+		dev-python/dnspython
 		net-analyzer/nagios-plugins"
 RDEPEND="${DEPEND}"
 
