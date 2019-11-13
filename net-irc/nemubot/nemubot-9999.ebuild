@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -32,6 +32,7 @@ RDEPEND="
 	dev-python/beautifulsoup[${PYTHON_USEDEP}]
 	dev-python/unidecode[${PYTHON_USEDEP}]
 	net-misc/youtube-dl[${PYTHON_USEDEP}]
+	www-client/w3m
 "
 DEPEND="${RDEPEND}"
 
