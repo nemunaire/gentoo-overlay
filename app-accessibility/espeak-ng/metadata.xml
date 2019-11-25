@@ -19,6 +19,9 @@
 		<flag name="mbrola">
 			Enable MBROLA voice support.
 		</flag>
+		<flag name="sonic">
+			Use the sonic library to support higher WPM.
+		</flag>
 	</use>
 	<upstream>
 		<remote-id type="github">espeak-ng/espeak-ng</remote-id>

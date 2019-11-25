@@ -11,10 +11,11 @@ HOMEPAGE="https://github.com/espeak-ng/espeak-ng"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~arm64"
-IUSE="+async doc +klatt +mbrola"
+IUSE="+async doc +klatt +mbrola sonic"
 
 COMMON_DEPEND="media-libs/pcaudiolib
 	!app-accessibility/espeak
+	sonic? ( media-sound/sonic )
 "
 
 BDEPEND="${COMMON_DEPEND}
@@ -37,8 +38,7 @@ src_configure() {
 		$(use_with async)
 		$(use_with klatt)
 		$(use_with mbrola)
-		$(use_with portaudio)
-		$(use_with pulseaudio)
+		$(use_with sonic)
 	)
 	econf "${my_conf[@]}"
 }
