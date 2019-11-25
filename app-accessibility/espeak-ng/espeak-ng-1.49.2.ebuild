@@ -11,16 +11,9 @@ HOMEPAGE="https://github.com/espeak-ng/espeak-ng"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~arm64"
-IUSE="+async doc +klatt +mbrola +portaudio pulseaudio"
+IUSE="+async doc +klatt +mbrola"
 
-COMMON_DEPEND="portaudio? (
-		media-libs/pcaudiolib
-		>=media-libs/portaudio-19_pre20071207
-	)
-	pulseaudio? (
-		media-libs/pcaudiolib[pulseaudio]
-		media-sound/pulseaudio
-	)
+COMMON_DEPEND="media-libs/pcaudiolib
 	!app-accessibility/espeak
 "
 
