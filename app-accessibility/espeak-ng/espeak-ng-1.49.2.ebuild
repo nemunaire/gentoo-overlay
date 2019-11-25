@@ -21,6 +21,7 @@ COMMON_DEPEND="portaudio? (
 		media-libs/pcaudiolib[pulseaudio]
 		media-sound/pulseaudio
 	)
+	!app-accessibility/espeak
 "
 
 BDEPEND="${COMMON_DEPEND}
