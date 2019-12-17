@@ -15,7 +15,7 @@ HOMEPAGE="https://mattermost.com"
 LICENSE="Apache-2.0"
 SLOT="0"
 IUSE="+build-client"
-DEPEND="dev-lang/go
+DEPEND=">=dev-lang/go-1.13
 	build-client? ( sys-apps/yarn )"
 RDEPEND=""
 
