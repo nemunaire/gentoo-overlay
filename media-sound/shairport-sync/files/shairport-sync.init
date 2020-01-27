@@ -1,0 +1,14 @@
+#!/sbin/openrc-run
+# Copyright 1999-2020 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+name="Shairport Sync"
+description="AirPlay audio player. Shairport Sync adds multi-room capability with Audio Synchronisation."
+
+command="/usr/bin/shairport-sync"
+pidfile=${SHAIRPORT_PIDFILE:-/var/run/shairport-sync.pid}
+start_stop_daemon_args="-b --make-pid -u nobody -g audio"
+
+depend() {
+	need avahi-daemon
+}
