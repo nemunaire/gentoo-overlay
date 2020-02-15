@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -26,7 +26,7 @@ RDEPEND="
 	>=dev-python/frozendict-1.0.0[${PYTHON_USEDEP}]
 	>=dev-python/unpaddedbase64-1.1.0[${PYTHON_USEDEP}]
 	>=dev-python/canonicaljson-1.1.3[${PYTHON_USEDEP}]
-	>=dev-python/signedjson-1.0.0[${PYTHON_USEDEP}]
+	>=dev-python/signedjson-1.1.0[${PYTHON_USEDEP}]
 	>=dev-python/pynacl-1.2.1[${PYTHON_USEDEP}]
 	>=dev-python/idna-2.5[${PYTHON_USEDEP}]
 	>=dev-python/service_identity-18.1.0[${PYTHON_USEDEP}]
