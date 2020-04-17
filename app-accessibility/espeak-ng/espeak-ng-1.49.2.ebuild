@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -15,7 +15,7 @@ IUSE="+async doc +klatt +mbrola sonic"
 
 COMMON_DEPEND="media-libs/pcaudiolib
 	!app-accessibility/espeak
-	sonic? ( media-sound/sonic )
+	sonic? ( media-libs/sonic )
 "
 
 BDEPEND="${COMMON_DEPEND}
