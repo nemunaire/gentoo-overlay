@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python2_7 python3_{6,7} )
+PYTHON_COMPAT=( python2_7 python3_{6,7,8} )
 
 inherit distutils-r1
 
@@ -33,14 +33,12 @@ DEPEND="${RDEPEND}
 		dev-python/pytest-localserver[${PYTHON_USEDEP}]
 	)"
 
+distutils_enable_tests pytest
+
 src_prepare() {
 	# delete stray files included in the tarball
 	find "${S}"/tests -name '*.pyc' -delete || die
 	distutils-r1_src_prepare
-}
-
-python_test() {
-	pytest -vv || die "Tests failed under ${EPYTHON}"
 }
 
 python_install_all() {
