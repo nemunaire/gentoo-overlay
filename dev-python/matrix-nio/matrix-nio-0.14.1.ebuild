@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{5,6,7,8} )
+PYTHON_COMPAT=( python3_{7,8} )
 
 inherit distutils-r1
 
@@ -20,8 +20,6 @@ RDEPEND="
 	dev-python/future[${PYTHON_USEDEP}]
 	dev-python/aiohttp[${PYTHON_USEDEP}]
 	dev-python/aiofiles[${PYTHON_USEDEP}]
-	dev-python/typing[${PYTHON_USEDEP}]
-	dev-python/dataclasses[${PYTHON_USEDEP}]
 	dev-python/h11[${PYTHON_USEDEP}]
 	dev-python/hyper-h2[${PYTHON_USEDEP}]
 	dev-python/logbook[${PYTHON_USEDEP}]
