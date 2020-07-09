@@ -44,10 +44,9 @@ RDEPEND="
 	>=dev-python/pymacaroons-0.13.0[${PYTHON_USEDEP}]
 	>=dev-python/msgpack-0.5.2[${PYTHON_USEDEP}]
 	>=dev-python/phonenumbers-8.2.0[${PYTHON_USEDEP}]
-	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/sdnotify-0.3[${PYTHON_USEDEP}]
 	<dev-python/prometheus_client-0.8.0[${PYTHON_USEDEP}]
-	>=dev-python/attrs-17.4.0[${PYTHON_USEDEP}]
+	>=dev-python/attrs-19.1.0[${PYTHON_USEDEP}]
 	>=dev-python/netaddr-0.7.18[${PYTHON_USEDEP}]
 	>=dev-python/typing-extensions-3.7.4[${PYTHON_USEDEP}]
 	virtual/libffi
