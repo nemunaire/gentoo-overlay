@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python2_7 python3_{6,7,8} )
+PYTHON_COMPAT=( python3_{6,7,8} )
 
 inherit distutils-r1
 
@@ -16,5 +16,9 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="dev-python/multi_key_dict"
+RDEPEND="
+	dev-python/multi_key_dict[${PYTHON_USEDEP}]
+	dev-python/pbr[${PYTHON_USEDEP}]
+	dev-python/wheel[${PYTHON_USEDEP}]
+"
 DEPEND="${RDEPEND}"
