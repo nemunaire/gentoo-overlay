@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{7,8,9} )
+PYTHON_COMPAT=( python3_{8,9,10} )
 
 if [[ ${PV} == 9999* ]]; then
 	EGIT_REPO_URI="https://github.com/shuque/${PN}.git"
@@ -22,4 +22,9 @@ SLOT="0"
 KEYWORDS=""
 
 RDEPEND="dev-python/m2crypto[${PYTHON_USEDEP}]"
-DEPEND="${RDEPEND}"
+BDEPEND="${RDEPEND}"
+
+src_prepare() {
+	mv tlsa_rdata.py tlsa_rdata || die
+	distutils-r1_src_prepare
+}
