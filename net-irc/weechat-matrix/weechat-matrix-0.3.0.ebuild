@@ -19,7 +19,6 @@ DISTUTILS_USE_SETUPTOOLS=pyproject.toml
 
 RDEPEND="
 	dev-python/pyopenssl[${PYTHON_USEDEP}]
-	dev-python/typing[${PYTHON_USEDEP}]
 	dev-python/webcolors[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	dev-python/atomicwrites[${PYTHON_USEDEP}]
