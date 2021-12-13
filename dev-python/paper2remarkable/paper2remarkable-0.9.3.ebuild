@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{7,8,9} )
+PYTHON_COMPAT=( python3_{8,9,10} )
 
 inherit distutils-r1
 
@@ -17,8 +17,10 @@ KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 IUSE=""
 
 RDEPEND="
+	app-text/ghostscript-gpl
 	dev-python/pikepdf[${PYTHON_USEDEP}]
-	>=dev-python/beautifulsoup-4.8[${PYTHON_USEDEP}]
+	>=dev-python/beautifulsoup4-4.8[${PYTHON_USEDEP}]
+	dev-python/cssselect[${PYTHON_USEDEP}]
 	>=dev-python/html2text-2020.1.16[${PYTHON_USEDEP}]
 	>=dev-python/markdown-3.1.1[${PYTHON_USEDEP}]
 	>=dev-python/pdfplumber-0.5[${PYTHON_USEDEP}]
