@@ -1,9 +1,9 @@
-# Copyright 2020-2021 Gentoo Authors
+# Copyright 2020-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{8..10})
+PYTHON_COMPAT=( python3_{8..11})
 DISTUTILS_USE_SETUPTOOLS="pyproject.toml"
 
 inherit distutils-r1
@@ -14,7 +14,7 @@ SRC_URI="https://github.com/poljar/matrix-nio/archive/${PV}.tar.gz -> ${P}.tar.g
 
 LICENSE="ISC"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~arm ~arm64"
 IUSE="e2e test"
 
 RESTRICT="!e2e? ( test )"
