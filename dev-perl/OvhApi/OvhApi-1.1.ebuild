@@ -1,8 +1,8 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI=7
 
 inherit perl-functions
 
@@ -22,7 +22,7 @@ S="${WORKDIR}/${MY_P}"
 RDEPEND="dev-perl/libwww-perl[ssl]
 	dev-perl/JSON
 	dev-perl/Digest-SHA1"
-DEPEND="${RDEPEND}"
+BDEPEND="${RDEPEND}"
 
 src_install() {
 	perl_set_version
