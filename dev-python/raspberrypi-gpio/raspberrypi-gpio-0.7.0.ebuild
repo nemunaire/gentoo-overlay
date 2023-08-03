@@ -1,8 +1,8 @@
 # Copyright 2015 Stuart Shelton
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-PYTHON_COMPAT=(  python{2_7,3_5,3_6,3_7,3_8} )
+EAPI=7
+PYTHON_COMPAT=( python2_7 python3_{9,10,11,12} )
 
 inherit distutils-r1 eutils
 
